@@ -29,14 +29,14 @@ def GenerateBoucher(objectCONFIG, PATHTICKET):
             dataClient["account"] = objectClient["nequiaccount"]
             dataClient["name"] = objectClient["name"]
         else:
-            dataClient["account"] = int(input(INPUT("Pon el ID de la cuenta nueva: ")))
+            dataClient["account"] = int(input(INPUT("Pon el número de la cuenta nueva: ")))
             dataClient["name"] = input(INPUT("Pon su nombre: "))
             listRegisters.append({"nequiaccount": dataClient["account"], "name": dataClient["name"]})
             objectCONFIG.saveJSON(CONFIG)
             animINFO("Cuenta almacenada en la base de datos")
         dataClient["value"] = int(input(INPUT("Pon el valor a pagar: ")))
     else:
-        dataClient["account"] = int(input(INPUT("Pon el ID de la cuenta nueva: ")))
+        dataClient["account"] = int(input(INPUT("Pon el número de la cuenta nueva: ")))
         dataClient["name"] = input(INPUT("Pon su nombre: "))
         listRegisters.append({"nequiaccount": dataClient["account"], "name": dataClient["name"]})
         CONFIG["creations"] = listRegisters
@@ -133,7 +133,7 @@ if __name__ == "__main__":
             sys.exit()
 
     functions = {
-        "Generador": {"description": "Generar bouchers de nequi"},
+        "Generador": {"description": "Generar"},
         "Eliminar": {"description": "Eliminar registros de la base de datos"}
     }
 
