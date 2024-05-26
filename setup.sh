@@ -11,7 +11,7 @@ echo -e "\e[32m
 |_|  |__||_______||____||_||_______||___| |_______||_______||_|  |__|
 
 
-xploitLabs -> https://github.com/xploitLabs
+Sfemz -> https:github.com/Sfemz
 \e[0m"
 
 # Verificar si python3 o python está instalado
