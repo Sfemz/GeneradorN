@@ -3,13 +3,12 @@ from utils.blocks import *
 from utils import colors
 from utils.objects import mainExecutable, querySerializer, apiHandler
 converter, pathHandler = mainExecutable.Generator.selector("base64"), mainExecutable.Generator.selector("pathlib")
-import sys, random
+import sys, random, json
 
 def closeSystem():
     sys.exit()
 
 def GenerateBoucher(objectCONFIG, PATHTICKET):
-    # Se eliminaron las restricciones de sistema suspendido
     animINFO("Cargando la base de datos...", 4)
 
     listRegisters = CONFIG.get("creations", [])
@@ -20,7 +19,7 @@ def GenerateBoucher(objectCONFIG, PATHTICKET):
         animDONE("Tus registros son:\n", 4)
 
         for e, o in enumerate(listRegisters):
-            print (f"{colors.WHITE}{e+1}{colors.RR}) {colors.WHITE}{o['nequiaccount']} {colors.GG}| {colors.WHITE}{o['name']}")
+            print(f"{colors.WHITE}{e+1}{colors.RR}) {colors.WHITE}{o['nequiaccount']} {colors.GG}| {colors.WHITE}{o['name']}")
         
         print()
         animINFO(f"Selecciona el número que desees o pon {colors.CC}0{colors.WW} para registrar uno nuevo.", 4)
@@ -68,18 +67,15 @@ def GenerateBoucher(objectCONFIG, PATHTICKET):
     sys.exit()
 
 def editUsers(objectCONFIG, user=None):
-    # Se eliminaron las restricciones de sistema suspendido
     animINFO("Cargando la base de datos...", 4)
 
     listRegisters = CONFIG.get("creations", [])
-
-    dataClient = {}
 
     if len(listRegisters):
         animDONE("Estos registros tienes en tu base de datos:\n", 4)
 
         for e, o in enumerate(listRegisters):
-            print (f"{colors.WHITE}{e+1}{colors.RR}) {colors.WHITE}{o['nequiaccount']} {colors.GG}| {colors.WHITE}{o['name']}")
+            print(f"{colors.WHITE}{e+1}{colors.RR}) {colors.WHITE}{o['nequiaccount']} {colors.GG}| {colors.WHITE}{o['name']}")
         
         print()
         animINFO(f"Selecciona al número que quieras eliminar o pon {colors.CC}0{colors.WW} para cancelar la acción.", 4)
@@ -93,7 +89,7 @@ def editUsers(objectCONFIG, user=None):
             objectCONFIG.saveJSON(CONFIG)
             animDONE("La cuenta ha sido eliminada de la base de datos")
         else:
-            print ()
+            print()
             animINFO("Cerrando sistema...", 6)
             sys.exit()
 
@@ -107,7 +103,7 @@ if __name__ == "__main__":
     try:
         bnr = converter.b64decode(querySerializer.cursor().getConfig(converter.b64decode("YmFubmVy").decode())).decode()
 
-        print (f"{colors.R}{bnr}\n{colors.WW}")
+        print(f"{colors.R}{bnr}\n{colors.WW}")
         animINFO("Presiona CTRL + C para cerrar el programa.", 6)
 
         params = sys.argv
@@ -132,16 +128,22 @@ if __name__ == "__main__":
         mainExecutable.Generator.conection()
 
         animINFO("Buscando actualizaciones...", 4)
-        d = apiHandler.handler().deprecated()["STTS"] if not DEBUG else False
+        # Cambié la verificación de actualizaciones a un archivo local
+        d = False  # Coloca `True` si deseas forzar la actualización para pruebas
         if d:
-            print ()
+            print()
             animINFO("El sistema encontró una nueva actualización del sistema")
-            news = apiHandler.handler().getNews()
+            try:
+                with open(apiHandler.handler().SYS.path.join(ACTUALPATH, "local_update_news.json"), "r") as file:
+                    news = json.load(file).get("news", [])
+            except FileNotFoundError:
+                news = []
+            
             if len(news):
                 animINFO("Tiene estas novedades:")
                 for e, n in enumerate(news):
-                    print (f"   {colors.RED}-{colors.WHITE} {n}")
-                print ()
+                    print(f"   {colors.RED}-{colors.WHITE} {n}")
+                print()
             response = input(INPUT("¿Actualizar sistema? [si/no] >>> "))
             if response.lower() in ["si", "s", "y", "yes"]:
                 animINFO("Actualizando sistema...")
@@ -154,15 +156,15 @@ if __name__ == "__main__":
             "Eliminar": {"description": "Eliminar registros de la base de datos"}
         }
 
-        print ()
+        print()
         animINFO("El sistema cuenta con las siguientes funcionalidades:")
-        print ()
+        print()
         for c, i in enumerate(functions.keys()):
-            print (f"  {c+1}) {i} {colors.GG}| {colors.WHITE}{functions[i]['description']}")
-        print ()
+            print(f"  {c+1}) {i} {colors.GG}| {colors.WHITE}{functions[i]['description']}")
+        print()
 
         response = int(input(INPUT("Escoge una opcion: ")))
-        print ()
+        print()
 
         if response-1 == 0:
             GenerateBoucher(objectCONFIG, PATHTICKET)
@@ -170,6 +172,6 @@ if __name__ == "__main__":
             editUsers(objectCONFIG)
 
     except KeyboardInterrupt:
-        print ()
+        print()
         animINFO("Saliendo del sistema...", 6)
         sys.exit()
