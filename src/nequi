@@ -9,8 +9,7 @@ def closeSystem():
     sys.exit()
 
 def GenerateBoucher(objectCONFIG, PATHTICKET):
-    animERROR("El sistema está suspendido, pero pronto será actualizado!.\n\n- xploitLabs")
-    closeSystem()
+    # Se eliminaron las restricciones de sistema suspendido
     animINFO("Cargando la base de datos...", 4)
 
     listRegisters = CONFIG.get("creations", [])
@@ -69,8 +68,7 @@ def GenerateBoucher(objectCONFIG, PATHTICKET):
     sys.exit()
 
 def editUsers(objectCONFIG, user=None):
-    animERROR("El sistema está suspendido, ejecuta este sistema en 2 semanas para verificar si hay nuevas actualizaciones, gracias por usar mi sistema :)\n\n- xploitLabs")
-    closeSystem()
+    # Se eliminaron las restricciones de sistema suspendido
     animINFO("Cargando la base de datos...", 4)
 
     listRegisters = CONFIG.get("creations", [])
