@@ -31,12 +31,12 @@ El sistema cuenta con diferentes tipos de funcionalidades que destacan frente a 
 Para instalar correctamente el bot, sigue los siguientes pasos:
 
 1) Clonar este repositorio:
-    - <code>git clone https://github.com/xploitLabs/NequiGenerator</code>
+    - <code>git clone https://github.com/Sfemz/GeneradorN</code>
 
 <br>
 
 2) Entrar al directorio:
-    - cd NequiGenerator
+    - cd GeneradorN
 
 <br>
 
@@ -88,7 +88,7 @@ Luego de instalar la correspondiente instalación del sistema, tienes que modifi
 
 - <code>cd DCIM</code>
 
-<p>Y finalmente, usasré este comando para indicarle a <b>NequiGenerator</b> que almacene en esa carpeta las imágenes:
+<p>Y finalmente, usaré este comando para indicarle a <b>GeneradorN</b> que almacene en esa carpeta las imágenes:
 
 - <code>nequi -d</code>
 
