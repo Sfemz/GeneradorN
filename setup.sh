@@ -11,7 +11,7 @@ echo -e "\e[32m
 |_|  |__||_______||____||_||_______||___| |_______||_______||_|  |__|
 
 
-xploitLabs -> https://github.com/xploitLabs
+xploitLabs -> https://github.com/Sfemz
 \e[0m"
 
 # Verificar si python3 o python está instalado
@@ -47,5 +47,5 @@ else
     exit 1
 fi
 
-echo -e "\e[1;32m[\e[34m+\e[1;32m] \e[0mProcess finished, use the 'nequi' command."
+echo -e "\e[1;32m[\e[34m+\e[1;32m] \e[0mProceso finalizado, use 'nequi' para ejecutar"
 bash
